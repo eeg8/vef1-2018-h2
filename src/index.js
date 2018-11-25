@@ -1,13 +1,12 @@
 import List from './lib/list';
+import { loadLectureList } from './lib/dom';
 
 document.addEventListener('DOMContentLoaded', () => {
   const page = document.querySelector('body');
-  const isLecturePage = page.classList.contains('lecture-page');
 
-  if (isLecturePage) {
+  const isFyrirlestur = page.classList.contains('fyrirlestra-sida');
 
-  } else {
-    const list = new List();
-    list.load();
-  }
+  const list = new List();
+
+  const data = list.load(isFyrirlestur, page);
 });
