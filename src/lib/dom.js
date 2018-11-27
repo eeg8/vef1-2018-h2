@@ -61,6 +61,9 @@ function loadLecture(data, sida) {
 
   const haus = sida.querySelector('.fyrirl-haus');
 
+  const hausMynd = `background: url(../${res.image})`;
+  haus.setAttribute('style', hausMynd);
+
   const flokkur = el("h2",res.category)
   flokkur.classList.add('fyrirl-haus__flokkur');
   haus.appendChild(flokkur);
@@ -69,12 +72,12 @@ function loadLecture(data, sida) {
   titill.classList.add('fyrirl-haus__titill');
   haus.appendChild(titill);
 
-  const hausMynd = el("img");
+  /*const hausMynd = el("img");
   hausMynd.setAttribute('src', res.image);
   hausMynd.classList.add('fyrirl-haus__mynd')
   haus.appendChild(hausMynd);
-
-  
+  document.getElementById('fyrirl-haus').style.backgroundImage = "url('res.image')";
+  */
 
   for (const i in hlutur) {
     const data = hlutur[i];
@@ -85,17 +88,23 @@ function loadLecture(data, sida) {
         lecture.appendChild(pTexti);
         break;
       case 'heading':
-        const fyrirsogn = el('h1', data.data);
+        const fyrirsogn = el('h2', data.data);
         fyrirsogn.classList.add('fyrirlestur__fyrirsogn')
         lecture.appendChild(fyrirsogn);
         break;
       case 'youtube':
         // todo
+        const youtube = el('iframe');
+        youtube.setAttribute('src', data.data);
+        youtube.classList.add('fyrirlestur__youtube')
+        lecture.appendChild(youtube);
         break;
       case 'quote':
         const tilvitnun = el('div', el('p', data.data));
-
+        const hofundur = el('div', el('p', data.attribute))
         tilvitnun.classList.add('fyrirlestur__tilvitnun');
+        hofundur.classList.add('fyrirlestur__tilvitnun--hofundur')
+        tilvitnun.appendChild(hofundur);
         lecture.appendChild(tilvitnun);
         break;
       case 'list':
@@ -103,7 +112,7 @@ function loadLecture(data, sida) {
         listi.classList.add('fyrirlestur__listi');
         for (const j in data.data) {
           const stak = el('li', data.data[j]);
-          stak.classList.add('fyrirlestur__listiStak');
+          stak.classList.add('fyrirlestur__listi--stak');
           listi.appendChild(stak);
         }
         lecture.appendChild(listi);
@@ -112,8 +121,11 @@ function loadLecture(data, sida) {
         const mynd = el('img');
         mynd.setAttribute('src', data.data);
         mynd.classList.add('fyrirlestur__mynd')
-
+        const yfirskrift = el('div',el('p', data.caption))
+        yfirskrift.classList.add('fyrirlestur__mynd--yfirskrift')
+        
         lecture.appendChild(mynd);
+        lecture.appendChild(yfirskrift);
         break;
       case 'code':
         const kod = el('pre', el('p', data.data));

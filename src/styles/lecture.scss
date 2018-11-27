@@ -5,13 +5,16 @@ html {
   font-size: 16px;
   font-family: 'Lora',serif;
   max-width: 1200px;
+  margin: 0 auto;
 }
 
 h1 {
   font-family: 'Roboto Mono', monospace;
+  font-size: 3em;
 }
 h2 {
   font-family: 'Roboto Mono', monospace;
+  font-size: 2em;
 }
 h3 {
   font-family: 'Roboto Mono', monospace;
@@ -24,17 +27,135 @@ h5 {
 }
 
 main {
-  
-  padding-left:20px;
-  padding-right: 20px;
+  //padding-left:20px;
+  //padding-right: 20px;
 }
 
 .fyrirl-haus {
+  width: 100%;
+  height: 50vh;
   
+  background-size: cover;
+  background-position: center, center;
+  //background: linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)), url('../img/code.jpg');
+  display:flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+
+.fyrirl-haus__mynd {
+  opacity: 0.6;
+}
+
+.fyrirl-haus__titill {
+  text-align: center;
+}
+
+.fyrirl-haus__flokkur {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+
+.fyrirlestur {
+  padding-bottom: 30px;
 }
 
 
 .fyrirlestur__tilvitnun {
   background-color: #ccc;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
 
+.fyrirlestur__tilvitnun p {
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.fyrirlestur__tilvitnun--hofundur {
+  padding-top: 20px;
+  font-style: italic;
+}
+
+.fyrirlestur__texti {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.fyrirlestur__mynd{
+  padding-left:20px;
+  padding-top: 20px;
+  padding-right: 20px;
+  width:100%;
+}
+
+.fyrirlestur__mynd--yfirskrift {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.fyrirlestur__fyrirsogn {
+  padding-left:20px;
+  padding-top:10px;
+  padding-right: 20px;
+  
+}
+
+.fyrirlestur__listi {
+  padding-left:20px;
+  padding-top:20px;
+  padding-right:20px;
+}
+
+.fyrirlestur__listi--stak {
+  padding-bottom: 20px;
+}
+
+.fyrirlestur__kodi {
+  padding-left:20px;
+  padding-top: 20px;
+  padding-right:20px;
+  padding-bottom: 20px;
+}
+
+.fyrirlestur__youtube{
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  width:100%;
+  height: 80vh;
+
+}
+
+.footer {
+  margin: 0 auto;
+}
+
+.footer p {
+  padding-top:30px;
+  padding-bottom:20px;
+  text-align: center;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+@media (min-width:1200px) {
+  html{
+    margin: 0 auto;
+  }
+  .fyrirlestur {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .fyrirlestur__youtube {
+    height: 50vh;
+  }
 }
