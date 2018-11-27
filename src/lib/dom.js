@@ -60,17 +60,21 @@ function loadLecture(data, sida) {
   const lecture = sida.querySelector('.fyrirlestur');
 
   const haus = sida.querySelector('.fyrirl-haus');
+  
 
   const hausMynd = `background: url(../${res.image})`;
   haus.setAttribute('style', hausMynd);
 
+  const haus2 = sida.querySelector('.fyrirl-haus2');
+
   const flokkur = el("h2",res.category)
   flokkur.classList.add('fyrirl-haus__flokkur');
-  haus.appendChild(flokkur);
+  haus2.appendChild(flokkur);
 
   const titill = el("h1",res.title);
   titill.classList.add('fyrirl-haus__titill');
-  haus.appendChild(titill);
+  haus2.appendChild(titill);
+  
 
   /*const hausMynd = el("img");
   hausMynd.setAttribute('src', res.image);
@@ -83,9 +87,15 @@ function loadLecture(data, sida) {
     const data = hlutur[i];
     switch (data.type) {
       case 'text':
-        const pTexti = el('p', data.data);
-        pTexti.classList.add('fyrirlestur__texti')
-        lecture.appendChild(pTexti);
+        const malsgrein = el('div');
+        const pTexti = data.data.split("\n");
+        for (const j in pTexti) {
+          const skipting = el('p', pTexti[j]);
+          skipting.classList.add('fyrirlestur__malsgrein');
+          malsgrein.appendChild(skipting);
+        }
+        malsgrein.classList.add('fyrirlestur__texti')
+        lecture.appendChild(malsgrein);
         break;
       case 'heading':
         const fyrirsogn = el('h2', data.data);
@@ -95,6 +105,7 @@ function loadLecture(data, sida) {
       case 'youtube':
         // todo
         const youtube = el('iframe');
+        youtube.setAttribute('frameBorder', 0);
         youtube.setAttribute('src', data.data);
         youtube.classList.add('fyrirlestur__youtube')
         lecture.appendChild(youtube);
