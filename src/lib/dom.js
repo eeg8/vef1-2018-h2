@@ -49,6 +49,177 @@ function loadAllLectures(data, sida) {
     elem.classList.add('fyrirlestrar__hluti');
     lectures.appendChild(elem);
   }
+  const shit = page.getElementsByClassName('lectures__titlewrap');
+
+  for(let i = 0; i < shit.length; i++) {
+    shit[i].addEventListener('click', () => {
+      clickHandler(shit[i].children[1]);
+    });
+  }
+
+  const htmlElement = page.getElementsByClassName("html__takki");
+  const cssElement = page.getElementsByClassName("css__takki");
+  const javascriptElement = page.getElementsByClassName("javascript__takki");
+
+  htmlElement[0].addEventListener('click' , () => {
+    htmlHandler(htmlElement[0]);
+  });
+  cssElement[0].addEventListener('click' , () => {
+    cssHandler(cssElement[0]);
+  });
+  javascriptElement[0].addEventListener('click' , () => {
+    jsHandler(javascriptElement[0]);
+  });
+}
+
+function clickHandler(e) {
+  const foreldri = e.parentNode;
+  var t = foreldri.removeChild(e);
+  if(e.className == "lectures__checkbox") {
+    const source = document.createElement('img');
+    source.setAttribute('class' , 'lectures__checkbox--hidden');
+    source.setAttribute('src' , 'img/check.png');
+    foreldri.appendChild(source);
+  } 
+  else {
+    const source = document.createElement('img');
+    source.setAttribute('class' , 'lectures__checkbox');
+    source.setAttribute('src' , 'img/check.png');
+    foreldri.appendChild(source);
+  }
+}
+
+function htmlHandler(e) {
+  const foreldri = e.parentNode;
+  foreldri.removeChild(e);
+  const source = document.createElement('button');
+  source.setAttribute('class' , 'html__takki--active');
+  source.innerHTML = 'HTML';
+  foreldri.insertBefore(source, foreldri.childNodes[1]);
+  console.log(foreldri);
+
+  const htmlElement2 = document.getElementsByClassName("html__takki--active");
+  htmlElement2[0].addEventListener('click' , () => {
+    htmlHandler2(htmlElement2[0]);
+  });
+}
+
+function htmlHandler2(e) {
+  const foreldri = e.parentNode;
+  foreldri.removeChild(e);
+  const source = document.createElement('button');
+  source.setAttribute('class' , 'html__takki');
+  source.innerHTML = 'HTML';
+  foreldri.insertBefore(source, foreldri.childNodes[1]);
+  console.log(e);
+
+  const foreldri2 = foreldri.parentNode;
+  const placeholder = document.getElementsByClassName("lectures__section");
+  console.log(foreldri2);
+  console.log(placeholder[0]);
+  console.log(placeholder[1]);
+  console.log(placeholder[2]);
+  var t = foreldri2.removeChild(placeholder[0]);
+  var f = foreldri2.removeChild(placeholder[0]);
+  var x = foreldri2.removeChild(placeholder[0]);
+  console.log(f);
+  console.log(t);
+  console.log(x);
+  const htmlElement = document.getElementsByClassName("html__takki");
+  htmlElement[0].addEventListener('click' , () => {
+    htmlHandler(htmlElement[0]);
+  });
+}
+
+function cssHandler(e) {
+  const foreldri = e.parentNode;
+  foreldri.removeChild(e);
+  const source = document.createElement('button');
+  source.setAttribute('class' , 'css__takki--active');
+  source.innerHTML = 'CSS';
+  foreldri.insertBefore(source, foreldri.childNodes[2]);
+  console.log(foreldri);
+
+  const cssElement2 = document.getElementsByClassName("css__takki--active");
+  cssElement2[0].addEventListener('click' , () => {
+    cssHandler2(cssElement2[0]);
+  });
+}
+
+function cssHandler2(e) {
+  const foreldri = e.parentNode;
+  foreldri.removeChild(e);
+  const source = document.createElement('button');
+  source.setAttribute('class' , 'css__takki');
+  source.innerHTML = 'CSS';
+  foreldri.insertBefore(source, foreldri.childNodes[2]);
+  console.log(foreldri);
+  const eh = document.querySelector('.lectures');
+  const eh2 = eh.querySelector('.lectures__section');
+  console.log(eh2);
+  console.log(eh);
+
+  const cssElement = document.getElementsByClassName("css__takki");
+  cssElement[0].addEventListener('click' , () => {
+    cssHandler(cssElement[0]);
+  });
+
+  const foreldri2 = foreldri.parentNode;
+  const lengd = document.getElementsByClassName('lectures__section');
+  const lectures__foreldri = lengd[1].parentNode;
+  console.log(lectures__foreldri);
+  if(lengd.length == 13) {
+    /*for(let i = 0; i < lengd.length; i++) {
+      console.log(lengd[i]);
+      console.log(elementPlaceholder);
+      const elementPlaceholder = lengd[i].getElementsByClassName('lectures__category');
+      if(elementPlaceholder.innerText != "css") {
+        lectures__foreldri.removeChild(lengd[i]);
+        i--;
+      }
+    }*/
+    for(let i = 0; i < 3; i++) {
+      lectures__foreldri.removeChild(lengd[0]);
+      console.log(lectures__foreldri);
+    }
+  } else {
+    return 1337;
+  }
+  /*const placeholder = document.getElementsByClassName("lectures__section");
+  foreldri2.removeChild(placeholder[3]);
+  foreldri2.removeChild(placeholder[3]);
+  foreldri2.removeChild(placeholder[3]);
+  foreldri2.removeChild(placeholder[3]);*/
+}
+
+function jsHandler(e) {
+  const foreldri = e.parentNode;
+  foreldri.removeChild(e);
+  const source = document.createElement('button');
+  source.setAttribute('class' , 'javascript__takki--active');
+  source.innerHTML = 'JavaScript';
+  foreldri.appendChild(source);
+  console.log(foreldri);
+
+  const jsElement2 = document.getElementsByClassName("javascript__takki--active");
+  jsElement2[0].addEventListener('click' , () => {
+    jsHandler2(jsElement2[0]);
+  });
+}
+
+function jsHandler2(e) {
+  const foreldri = e.parentNode;
+  foreldri.removeChild(e);
+  const source = document.createElement('button');
+  source.setAttribute('class' , 'javascript__takki');
+  source.innerHTML = 'JavaScript';
+  foreldri.appendChild(source);
+  console.log(foreldri);
+
+  const jsElement = document.getElementsByClassName("javascript__takki");
+  jsElement[0].addEventListener('click' , () => {
+    jsHandler(jsElement[0]);
+  });
 }
 
 function loadLecture(data, sida) {
