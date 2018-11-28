@@ -50,7 +50,7 @@ export function checkSlug(slug) {
 
 function loadAllLectures(data, sida) {
 
-  let filtered = filterCheck(page);
+  let filtered = filterCheck(sida);
   if (filtered.length === 0) {
     filtered = ["html", "css", "javascript"];
   }
@@ -93,14 +93,14 @@ function loadAllLectures(data, sida) {
         checkMark.classList.add('lectures__checkbox--hidden');
       }
 
-      const wrap = el('div', titill, hak);
+      const wrap = el('div', titill, checkMark);
       wrap.classList.add('fyrirlestrar__titlewrap');
       elem.appendChild(wrap);
       elem.classList.add('fyrirlestrar__hluti');
       lectures.appendChild(elem);
 
       const href = `fyrirlestur.html?slug=${lecture.slug}`;
-      element.setAttribute('href', href);
+      elem.setAttribute('href', href);
 
       column.appendChild(elem);
       lectures.appendChild(column);
