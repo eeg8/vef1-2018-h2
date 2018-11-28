@@ -1,12 +1,13 @@
-import List from './lib/list';
-import { loadLectureList } from './lib/dom';
+import {saekjaData} from './lib/helpers';
+import {addListeners } from './lib/list';
 
 document.addEventListener('DOMContentLoaded', () => {
   const page = document.querySelector('body');
 
   const isFyrirlestur = page.classList.contains('fyrirlestra-sida');
-
-  const list = new List();
-
-  const data = list.load(isFyrirlestur, page);
+  saekjaData(isFyrirlestur, page);
+  if(!isFyrirlestur)
+  {
+    addListeners(page);
+  }
 });
