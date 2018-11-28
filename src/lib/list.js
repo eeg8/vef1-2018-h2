@@ -1,46 +1,46 @@
 import {saekjaData } from './helpers';
-import { add, remove } from './storage';
-import {getFyrirlestur, checkSlug} from './dom'
+import { add, remove } from './geymsla';
+import {getFyrirlestur, athugaSlug} from './utlit'
 
-function checkFunction(el) {
-  return el.className === 'category__button';
+function athVirkni(el) {
+  return el.className === '.takki';
 }
 
-function filterButtons(buttons) {
-  return buttons.filter(checkFunction);
+function siaTakka(takkar) {
+  return takkar.filter(athVirkni);
 }
 
 function onToggle(e) {
   const element = e.srcElement;
-  element.classList.toggle('category__button--toggled');
-  loadData(false, document.querySelector('body'));
+  element.classList.toggle('takki--toggled');
+  saekjaData(false, document.querySelector('body'));
 }
 
 
-export function addListeners(page) {
-  const category = page.querySelector('.category__wrap');
-  console.log(category);
-  let buttons = Array.from(category.childNodes);
+export function addListeners(sida) {
+  const flokkur = sida.querySelector('.takkar__saman');
+  console.log(flokkur);
+  let takkar = Array.from(flokkur.childNodes);
 
-  buttons = filterButtons(buttons);
+  takkar = siaTakka(takkar);
 
-  for (let i = 0; i < buttons.length; i += 1) {
-    buttons[i].addEventListener('click', onToggle);
+  for (let i = 0; i < takkar.length; i += 1) {
+    takkar[i].addEventListener('click', onToggle);
   }
 }
 
 export function finishedListener(e) {
   const slug = getFyrirlestur();
-  const lecture = e.path[1];
-  const img = lecture.firstChild;
-  const p = lecture.lastChild;
-  if (checkSlug(slug)) {
+  const fyrirlestur = e.path[1];
+  const img = fyrirlestur.firstChild;
+  const p = fyrirlestur.lastChild;
+  if (athugaSlug(slug)) {
     remove(slug);
     p.textContent = 'Klára fyrirlestur';
   } else {
     add(slug);
-    p.textContent = 'Fyrirlestur kláraður';
+    p.textContent = 'Fyrirlestri lokið';
   }
-  img.classList.toggle('lecture__check--hidden');
-  lecture.classList.toggle('lecture__finish--green');
+  img.classList.toggle('fyrirlestur__hak--falid');
+  fyrirlestur.classList.toggle('fyrirlestur__lok--gron');
 }

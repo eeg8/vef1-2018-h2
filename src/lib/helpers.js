@@ -1,4 +1,4 @@
-import { loadDOMC } from './dom';
+import { loadDOMC } from './utlit';
 
 
 export function empty(element) {

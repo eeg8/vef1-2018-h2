@@ -1,14 +1,14 @@
 import {el, empty} from './helpers';
-import {check} from './storage';
+import {check} from './geymsla';
 import {finishedListener} from './list'
-
-
+ 
+ 
 export function getFyrirlestur() {
   const url1 = window.location.href;
   const url2 = new URL(url1);
   return url2.searchParams.get('slug');
 }
-
+ 
 function dataUrSlug(data, slug) {
   for (let i = 0; i < data.lectures.length; i += 1) {
     const lecture = data.lectures[i];
@@ -18,57 +18,57 @@ function dataUrSlug(data, slug) {
   }
   return null;
 }
-
-function getObject(data) {
-  const object = getFyrirlestur();
-  return dataUrSlug(data,object);
+ 
+function getHlutur(data) {
+  const hlutur = getFyrirlestur();
+  return dataUrSlug(data,hlutur);
 }
-
-function checkFunction(element) {
+ 
+function athVirkni(element) {
   if (element.className === undefined) {
     return false;
   }
-  return element.className.includes('category__button--toggled');
+  return element.className.includes('takki--toggled');
 }
-
-function filterButtons(buttons) {
-  return buttons.filter(checkFunction);
+ 
+function siaTakka(takkar) {
+  return takkar.filter(athVirkni);
 }
-
-function filterCheck(page) {
-  const category = page.querySelector('.category__wrap');
+ 
+function siaFyrirlestra(page) {
+  const category = page.querySelector('.takkar__saman');
   let buttons = Array.from(category.childNodes);
-  buttons = filterButtons(buttons);
+  buttons = siaTakka(buttons);
   buttons = buttons.map(x => x.outerText.toLowerCase());
   return buttons;
 }
-
-export function checkSlug(slug) {
+ 
+export function athugaSlug(slug) {
   return check(slug);
 }
-
-
+ 
+ 
 function loadAllLectures(data, sida) {
-
-  let filtered = filterCheck(sida);
-  if (filtered.length === 0) {
-    filtered = ["html", "css", "javascript"];
+ 
+  let placeholder = siaFyrirlestra(sida);
+  if (placeholder.length === 0) {
+    placeholder = ["html", "css", "javascript"];
   }
-  
+ 
   const lectures = sida.querySelector('.fyrirlestrar');
-
+ 
   empty(lectures);
-
-
+ 
+ 
   for (let i = 0; i < data.lectures.length; i += 1) {
     let lecture = data.lectures[i];
-
-    if (filtered.includes(lecture.category)) {
-
+ 
+    if (placeholder.includes(lecture.category)) {
+ 
       const elem = el('a');
-      const column = el('div');
-      column.classList.add('lectures__col');
-
+      const div = el('div');
+      div.classList.add('fyrirlestrar__spjald');
+ 
       if (lecture.thumbnail) {
         const mynd = el('img');
         mynd.classList.add('fyrirlestrar__img');
@@ -78,55 +78,57 @@ function loadAllLectures(data, sida) {
       else {
         elem.classList.add('fyrirlestrar__img--enginimg')
       }
-
+ 
       const flokkur = el('h2', lecture.category);
       flokkur.classList.add('fyrirlestrar__flokkur');
       elem.appendChild(flokkur);
-  
-
+ 
+ 
       const titill = el('h1', lecture.title);
       titill.classList.add('fyrirlestrar__titill');
-
-      const checkMark = el('p', '✓');
-      checkMark.classList.add('lectures__checkbox');
-      if (!checkSlug(lecture.slug)) {
-        checkMark.classList.add('lectures__checkbox--hidden');
+ 
+      const hak = el('p', '✓');
+      hak.classList.add('fyrirlestrar__kassi');
+      if (!athugaSlug(lecture.slug)) {
+        hak.classList.add('fyrirlestrar__kassi--hidden');
       }
-
-      const wrap = el('div', titill, checkMark);
-      wrap.classList.add('fyrirlestrar__titlewrap');
+ 
+      const wrap = el('div', titill, hak);
+      wrap.classList.add('fyrirlestrar__nedst');
       elem.appendChild(wrap);
       elem.classList.add('fyrirlestrar__hluti');
       lectures.appendChild(elem);
+ 
 
       const href = `fyrirlestur.html?slug=${lecture.slug}`;
       elem.setAttribute('href', href);
+ 
 
-      column.appendChild(elem);
-      lectures.appendChild(column);
+      div.appendChild(elem);
+      lectures.appendChild(div);
     }
   }
 }
-
+ 
 function loadLecture(data, sida) {
-  const res = getObject(data);
+  const res = getHlutur(data);
   const hlutur = res.content;
-
+ 
   const lecture = sida.querySelector('.fyrirlestur');
   const haus = sida.querySelector('.fyrirl-haus');
   haus.style.background = `linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)), url(./${res.image})`;
-
+ 
   const haus2 = sida.querySelector('.fyrirl-haus2');
-
+ 
   const flokkur = el("h2",res.category)
   flokkur.classList.add('fyrirl-haus__flokkur');
   haus2.appendChild(flokkur);
-
+ 
   const titill = el("h1",res.title);
   titill.classList.add('fyrirl-haus__titill');
   haus2.appendChild(titill);
-  
-
+ 
+ 
   for (const i in hlutur) {
     const data = hlutur[i];
     switch (data.type) {
@@ -178,7 +180,7 @@ function loadLecture(data, sida) {
         mynd.classList.add('fyrirlestur__mynd')
         const yfirskrift = el('div',el('p', data.caption))
         yfirskrift.classList.add('fyrirlestur__mynd--yfirskrift')
-        
+       
         lecture.appendChild(mynd);
         lecture.appendChild(yfirskrift);
         break;
@@ -192,29 +194,30 @@ function loadLecture(data, sida) {
       }
     }
   }
-  const checkmark = el('p', '✓');
-  checkmark.classList.add('lecture__check');
-  if (!checkSlug(res.slug)) {
-    checkmark.classList.add('lecture__check--hidden');
+  const hak = el('p', '✓');
+  hak.classList.add('fyrirlestur__hak');
+  if (!athugaSlug(res.slug)) {
+    hak.classList.add('fyrirlestur__hak--falid');
   }
-  const finished = el('div', checkmark);
 
-
-  finished.classList.add('lecture__finish');
-  if (checkSlug(res.slug)) {
-    finished.classList.add('lecture__finish--green');
-    finished.appendChild(el('p', 'Fyrirlestur kláraður'));
+  const lok = el('div', hak);
+ 
+ 
+  lok.classList.add('fyrirlestur__lok');
+  if (athugaSlug(res.slug)) {
+    lok.classList.add('fyrirlestur__lok--gron');
+    lok.appendChild(el('p', 'Fyrirlestri lokið'));
   } else {
-    finished.appendChild(el('p', 'Klára fyrirlestur'));
+    lok.appendChild(el('p', 'Klára fyrirlestur'));
   }
-  finished.addEventListener('click', finishedListener);
-  const finishedWrap = el('div', finished);
-  finishedWrap.classList.add('lecture__finishwrap');
-  lecture.appendChild(finishedWrap);
+  lok.addEventListener('click', finishedListener);
+  const lokHlutur = el('div', lok);
+  lokHlutur.classList.add('fyrirlestur__utanumLok');
+  lecture.appendChild(lokHlutur);
 }
-
+ 
 export function loadDOMC(data, sida, isFyrirlestur) {
-
+ 
   if (isFyrirlestur) {
     loadLecture(data, sida);
   } else {

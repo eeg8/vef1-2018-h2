@@ -2,12 +2,12 @@ import {saekjaData} from './lib/helpers';
 import {addListeners } from './lib/list';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const page = document.querySelector('body');
+  const sida = document.querySelector('body');
 
-  const isFyrirlestur = page.classList.contains('fyrirlestra-sida');
-  saekjaData(isFyrirlestur, page);
+  const isFyrirlestur = sida.classList.contains('fyrirlestra-sida');
+  saekjaData(isFyrirlestur, sida);
   if(!isFyrirlestur)
   {
-    addListeners(page);
+    addListeners(sida);
   }
 });
