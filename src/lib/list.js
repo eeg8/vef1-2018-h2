@@ -3,7 +3,7 @@ import { add, remove } from './geymsla';
 import {getFyrirlestur, athugaSlug} from './utlit'
 
 function athVirkni(el) {
-  return el.className === '.takki';
+  return el.className === 'takki';
 }
 
 function siaTakka(takkar) {

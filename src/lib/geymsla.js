@@ -4,43 +4,43 @@ export function load() {
   return JSON.parse(window.localStorage.getItem(LOCALSTORAGE_KEY));
 }
 
-export function check(slugVar) {
+export function check(sluggid) {
   const data = window.localStorage.getItem(LOCALSTORAGE_KEY);
   if(data === null) {
     return false;
   }
   const obj = JSON.parse(data);
   for (let i = 0; i < obj.length; i += 1) {
-    if (obj[i].slug === slugVar) {
+    if (obj[i].slug === sluggid) {
       return true;
     }
   }
   return false;
 }
 
-export function add(slugVar) {
+export function add(sluggid) {
   const data = window.localStorage.getItem(LOCALSTORAGE_KEY);
 
   if (data === null) {
-    const array = JSON.stringify([{
-      slug: slugVar,
+    const fylkid = JSON.stringify([{
+      slug: sluggid,
     }]);
-    window.localStorage.setItem(LOCALSTORAGE_KEY, array);
+    window.localStorage.setItem(LOCALSTORAGE_KEY, fylkid);
   } else {
     const obj = JSON.parse(data);
     obj.push({
-      slug: slugVar,
+      slug: sluggid,
     });
     window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(obj));
   }
 }
 
-export function remove(slugVar) {
+export function remove(sluggid) {
   const data = window.localStorage.getItem(LOCALSTORAGE_KEY);
 
   if (data !== null) {
     let obj = JSON.parse(data);
-    obj = obj.filter(item => item.slug !== slugVar);
+    obj = obj.filter(item => item.slug !== sluggid);
     window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(obj));
   }
 }
