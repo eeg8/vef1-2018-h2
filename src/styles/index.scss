@@ -13,6 +13,36 @@ html {
     font-size: 16px;
 }
 
+.allt__efni {
+    width: 100%;
+}
+
+.category__wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.category__button {
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    margin: 40px 20px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #000;
+    background-color: #ccc;
+    border-radius: 1rem;
+    transition: background-color 300ms ease-in-out;
+}
+
+.category {
+    display: flex;
+    justify-content: space-around;
+}
+
 .header__wrap > h1 {
     text-align: center;
     padding-bottom: 20px;
@@ -31,18 +61,16 @@ html {
     margin-top: auto;
 }
 
-.lectures__titlewrap > h1 {
-    font-family: 'Courier New';
-    font-size: 1.8em;
-    width: 87%;
-    margin-left: 5px;
-}
-
-.lectures__section > h2 {
-    font-size: 16px;
-    text-transform: uppercase;
-    font-family: 'Courier New';
-    margin-left: 5px;
+.fyrirlestrar__hluti {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    color: #000;
+    text-decoration: none;
+    flex-direction: column;
+    background-color: #ccc;
+    transition: background-color 300ms ease-in-out;
 }
 
 .header__wrap {
@@ -54,6 +82,11 @@ html {
     display: flex;
     flex-flow: wrap;
     height: 100%;
+}
+
+.fyrirlestrar__flokkur {
+    padding-left: 10px;
+    text-transform: uppercase;
 }
 
 main {
@@ -68,22 +101,27 @@ header {
     height: 200px;
 }
 
-.lectures {
+.fyrirlestrar {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
 }
 
-.lectures__section {
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    background-color: #ccc;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.fyrirlestrar__titlewrap {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.fyrirlestrar__col {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 40px;
+    width: 100%;
 }
 
 .lectures__titlewrap {
@@ -165,180 +203,27 @@ header {
 }
 
 img {
-    width: 100%;
+    max-width: 100%;
     opacity: 0.6;
 }
 
-.fyrirlestrar__img {
-    width: 100%;
-    height: 100%;
+.fyrirlestrar__checkbox--hidden {
+    display: none;
+    max-width: 20px;
+    max-height: 20px;
 }
 
-.lectures__checkbox {
-    height: 37.6px;
-    width: 9%;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    visibility: visible;
+.fyrirlestrar__checkbox {
+    max-width: 20px;
+    max-height: 20px;
+    margin-right: 1rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2d2;
 }
 
-.lectures__checkbox--hidden {
-    height: 37.6px;
-    width: 9%;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    visibility: hidden;
-}
-
-.allt__efni {
-    width: 100%;
-}
-
-@media (min-width: 1499px) {
-    /*.lectures__section:nth-child(3) > .lectures__category {
-        margin-top: auto;
-        margin-bottom: -127px;
-    } 
-
-    .lectures__section:nth-child(3) > .lectures__titlewrap {
-        height: 45.6px;
-        margin-top: auto;
-    }
-
-    .lectures__section:nth-child(9) > .lectures__category {
-        margin-top: auto;
-        margin-bottom: -115px;
-    } 
-
-    .lectures__section:nth-child(9) > .lectures__titlewrap {
-        height: 45.6px;
-        margin-top: auto;
-        margin-bottom: 20px;
-    }
-
-    .lectures__section:nth-child(13) > .lectures__category {
-        margin-top: auto;
-        margin-bottom: -130px;
-    } 
-
-    .lectures__section:nth-child(13) > .lectures__titlewrap {
-        height: 45.6px;
-        margin-top: auto;
-    }*/
-
-    img {
-        max-height: 230px;
-    }
-
-    .lectures__section:nth-child(2) {
-        width: 33%;
-        margin: 0;
-        margin-right: auto;
-        padding-right: 10px;
-        background-clip: content-box;
-        margin-bottom: 20px;
-    }
-
-    .lectures__section:nth-child(3) {
-        width: 33%;
-        margin: 0;
-        margin: 0 auto;
-        padding-right: 5px;
-        padding-left: 5px;
-        background-clip: content-box;
-        margin-bottom: 20px;
-        height: unset;
-    }
-
-    .lectures__section:nth-child(4) {
-        width: 33%;
-        margin: 0;
-        margin-left: auto;
-        padding-left: 10px;
-        background-clip: content-box;
-        margin-bottom: 20px;
-    }
-
-    .lectures__section:nth-child(5) {
-        width: 33%;
-        margin: 20px 0;
-        margin-right: auto;
-        padding-right: 10px;
-        background-clip: content-box;
-    }
-
-    .lectures__section:nth-child(6) {
-        width: 33%;
-        margin: 0 auto;
-        margin: 20px 0;
-        padding-right: 5px;
-        padding-left: 5px;
-        background-clip: content-box;
-    }
-
-    .lectures__section:nth-child(7) {
-        width: 33%;
-        margin: 20px 0;
-        margin-left: auto;
-        padding-left: 10px;
-        background-clip: content-box;
-    }
-    .lectures__section:nth-child(8) {
-        width: 33%;
-        margin: 20px 0;
-        margin-right: auto;
-        padding-right: 10px;
-        background-clip: content-box;
-    }
-
-    .lectures__section:nth-child(9) {
-        width: 33%;
-        margin: 0 auto;
-        margin: 20px 0;
-        padding-right: 5px;
-        padding-left: 5px;
-        background-clip: content-box;
-        height: unset;
-    }
-
-    .lectures__section:nth-child(10) {
-        width: 33%;
-        margin: 20px 0;
-        margin-left: auto;
-        padding-left: 10px;
-        background-clip: content-box;
-    }
-    .lectures__section:nth-child(11) {
-        width: 33%;
-        margin: 20px 0;
-        margin-right: auto;
-        padding-right: 10px;
-        background-clip: content-box;
-    }
-
-    .lectures__section:nth-child(12) {
-        width: 33%;
-        margin: 0 auto;
-        margin: 20px 0;
-        padding-right: 5px;
-        padding-left: 5px;
-        background-clip: content-box;
-    }
-
-    .lectures__section:nth-child(13) {
-        width: 33%;
-        margin: 20px 0;
-        margin-left: auto;
-        padding-left: 10px;
-        background-clip: content-box;
-        height: unset;
-    }
-
-    .lectures__section:nth-child(14) {
-        width: 33%;
-        margin: 20px 0;
-        margin-right: auto;
-        padding-right: 10px;
-        background-clip: content-box;
+@media (min-width: 1499px) { 
+    .fyrirlestrar__col {
+        width: 33.333%;
     }
 }
