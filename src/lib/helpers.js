@@ -8,7 +8,7 @@ export function empty(element) {
 }
 
 export function saekjaData(isFyrirlestur, sida) {
-  fetch('../lectures.json')
+  fetch('./lectures.json')
     .then((response) => {
       if (response.ok) 
       {
